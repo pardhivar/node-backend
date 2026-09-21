@@ -45,6 +45,17 @@ jobs:
 
       - name: Build/check application
         run: npm run build
+      - name: Create build info
+        run: |
+          echo "Commit SHA: $GITHUB_SHA" > build-info.txt
+          echo "Node.js version: $(node --version)" >> build-info.txt
+      - name: Upload build info
+        uses: actions/upload-artifact@v4
+        with:
+          name: build-info
+          path: build-info.txt
+    
+
         
         
 
